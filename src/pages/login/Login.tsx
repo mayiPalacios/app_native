@@ -2,6 +2,7 @@ import React from "react";
 import { styles } from "../../style/main/main";
 import FormComponent from "../../components/login/FormComponent";
 import {
+  Alert,
   Button,
   ImageBackground,
   StyleSheet,
@@ -9,20 +10,29 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { RootStackParamList } from "../../interface/rootStack";
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 
 const image = {
   uri: "https://media.istockphoto.com/id/170958625/es/foto/azul-oscuro-fondo-grunge.jpg?s=612x612&w=0&k=20&c=FEBMiNDMhTJVUP4ds8sqbe9IxbfB1leISYvJNVwpjVo=",
 };
+const Login = () =>{
 
-const Login = () => {
-  return (
-    <View style={styles.container}>
-      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-        <Button title="login" />
-        <Button title="Register" />
-      </ImageBackground>
-    </View>
-  );
-};
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
-export default Login;
+  const goToRegister = () => {
+    navigation.navigate('Register'); 
+  };
+
+    return(
+        <View style={styles.container}>
+        <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+          <Button title="login3" />
+          <Button onPress={goToRegister} title="Register" />
+        </ImageBackground>
+      </View>
+    )
+}
+
+export default Login
